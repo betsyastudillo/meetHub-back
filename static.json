@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Sala 1",
+    "capacity": 100,
+    "status": "Activa",
+    "location": "Departamento principal piso 5",
+    "currentBookings": [],
+    "imgUrl": ["https://i.pinimg.com/736x/14/68/48/1468488d40b864e5f70fefb8958640db.jpg"]
+  },
+  {
+    "name": "Sala 2",
+    "capacity": 150,
+    "status": "Inactiva",
+    "location": "Departamento principal sede Norte piso 3",
+    "currentBookings": [],
+    "imgUrl": ["https://i.pinimg.com/736x/10/cb/85/10cb853e61ecb3fc35af0838eb88138c.jpg"]
+  }
+]

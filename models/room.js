@@ -1,4 +1,4 @@
-const mongose = require("");
+const mongoose = require("");
 const { default: mongoose } = require("mongoose");
 
 const roomSchema = mongoose.Schema({  //revisar esta parte 
@@ -6,21 +6,21 @@ const roomSchema = mongoose.Schema({  //revisar esta parte
     type: String,
     required: true,
   },
-  maxcount: {
+  capacity: {
     type: Number,
     required: true,
   },
-  imageurls: [],
-  currentbookings: [],
-  type: {
+  status: {
+    type: String,
+    required: true,
+    enum: ['Activa', 'Inactiva']
+  },
+  location: {
     type: String,
     required: true,
   },
-  description: {
-    type: String,
-    required: true,
-  }
-
+  currentBookings: [],
+  imgUrl: []
 })
 const roomModel = mongoose.model('rooms', roomSchema)
 
