@@ -1,5 +1,6 @@
 const  mongoose  = require("mongoose");
 
+//mern-rooms es el nombre de la base de datos
 var mongoURL = 'mongodb+srv://mayra:m1234m@cluster0.wavop.mongodb.net/mern-rooms'
 
 mongoose.connect(mongoURL, {useUnifiedTopology : true ,  useNewUrlParser:true} )
