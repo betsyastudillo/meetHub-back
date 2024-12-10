@@ -1,5 +1,5 @@
-const mongoose = require("");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
+// const { default: mongoose } = require("mongoose");
 
 const roomSchema = mongoose.Schema({  //revisar esta parte 
   name: {
@@ -22,7 +22,7 @@ const roomSchema = mongoose.Schema({  //revisar esta parte
   currentBookings: [],
   imgUrl: []
 })
-const roomModel = mongoose.model('rooms', roomSchema)
-
-module.export = roomModel
+// const room = mongoose.model('room', roomSchema)
+const Room = mongoose.model('Room', roomSchema, 'rooms');
+module.exports = Room
 

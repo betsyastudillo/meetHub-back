@@ -1,9 +1,9 @@
 const  mongoose  = require("mongoose");
 
-var mongoURL = 'mongodb+srv://mayra:m1234m@cluster0.wavop.mongodb.net/room'
+var mongoURL = 'mongodb+srv://mayra:m1234m@cluster0.wavop.mongodb.net/mern-rooms'
 
-mongoose.connect(mongoURL , {useUnifiedTopology : true ,  useNewUrIParsert:true})
-
+mongoose.connect(mongoURL, {useUnifiedTopology : true ,  useNewUrlParser:true} )
+// 
 var connection = mongoose.connection
 
 connection.on('error' , () =>{
