@@ -16,8 +16,8 @@ router.post("/bookroom", async (req, res) => {
       room: room.name,
       roomId: room._id,
       userId,
-      fromDate: moment(fromDate).format('DD-MM-YYYY'),
-      toDate:  moment(toDate).format('DD-MM-YYYY'),
+      fromDate,
+      toDate,
       totalDays,
       transactionId: '1234'
     })
@@ -28,8 +28,8 @@ router.post("/bookroom", async (req, res) => {
 
     roomtemp.currentBookings.push({ 
       bookingId: booking._id, 
-      fromDate: moment(fromDate).format('DD-MM-YYYY'), 
-      toDate: moment(toDate).format('DD-MM-YYYY'),
+      fromDate, 
+      toDate,
       userId : userId,
       status : booking.status
     });
