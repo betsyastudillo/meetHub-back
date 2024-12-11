@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const BookingSchema = moongose.Schema({
+const BookingSchema = mongoose.Schema({
 
   room: {
     type: String, 
