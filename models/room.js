@@ -21,7 +21,9 @@ const roomSchema = mongoose.Schema({  //revisar esta parte
     required: true,
   },
   currentBookings: [],
-  imgUrl: []
+  imgUrl: [],
+}, {
+  timestamps: true,
 })
 // const room = mongoose.model('room', roomSchema)
 //Configuración para que mongo sólo agregue una colección de rooms

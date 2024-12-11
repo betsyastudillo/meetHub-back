@@ -10,7 +10,7 @@ const bookingsRoute = require('./routes/bookingsRoute')
 app.use(express.json());
 app.use('/api/rooms', roomsRoute);
 app.use('/api/users', usersRoute);
-app.use('/api/booking', bookingsRoute);
+app.use('/api/bookings', bookingsRoute);
 
 const port = process.env.PORT || 5000;
 
