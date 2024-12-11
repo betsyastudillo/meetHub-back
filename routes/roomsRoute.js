@@ -21,5 +21,17 @@ router.post("/getRoomById", async (req, res) => {
   }
 });
 
+router.post("/addroom", async(req,res) => {
+  try {
+    const newroom = new Room(req.body)
+    await newroom.save()
+
+    res.send('Agregar nueva sala');
+
+  } catch (error) {
+    return res.status(400).jason({error});
+  }
+})
+
 
 module.exports = router;

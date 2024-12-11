@@ -13,8 +13,8 @@ const roomSchema = mongoose.Schema({  //revisar esta parte
   },
   status: {
     type: String,
-    required: true,
-    enum: ['Activa', 'Inactiva']
+    enum: ['Activa', 'Inactiva'],
+    default: 'Activa'
   },
   location: {
     type: String,
