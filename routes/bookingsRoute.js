@@ -43,7 +43,7 @@ router.post("/bookroom", async (req, res) => {
   }
 });
 
-router.post("/api/bookings/getBookingsByUserId", async (req, res) => {
+router.post("/getBookingsByUserId", async (req, res) => {
   console.log("Request received:", req.body); // Log para verificar el cuerpo de la solicitud
 
   const userId = req.body.userId;
@@ -55,6 +55,37 @@ router.post("/api/bookings/getBookingsByUserId", async (req, res) => {
     res.send(bookings); // Enviar las reservas encontradas
   } catch (error) {
     return res.status(400).json({ error }); // Enviar error si ocurre un problema
+  }
+});
+
+router.post('/cancelBooking', async(req, res) => {
+  const { bookingId, roomId} = req.body;
+  try {
+    const bookingItem = await Booking.findOne({_id: bookingId});
+    bookingItem.status = 'cancelled';
+
+    await bookingItem.save();
+
+    const room = await Room.findOne({_id: roomId});
+    const bookings = room.currentBookings;
+
+    const temp = bookings.filter(booking => booking.bookingId.toString() !== bookingId)
+    room.currentBookings = temp;
+
+    await room.save();
+
+    res.send('Reserva cancelada exitosamente');
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
+router.get('/getAllBookings', async(req, res) => {
+  try {
+    const bookings = await Booking.find();
+    res.send(bookings);
+  } catch (error) {
+    return res.status(400).json({ error });
   }
 });
 
