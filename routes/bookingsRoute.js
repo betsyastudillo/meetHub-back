@@ -43,4 +43,19 @@ router.post("/bookroom", async (req, res) => {
   }
 });
 
+router.post("/api/bookings/getBookingsByUserId", async (req, res) => {
+  console.log("Request received:", req.body); // Log para verificar el cuerpo de la solicitud
+
+  const userId = req.body.userId;
+  
+  try {
+    const bookings = await Booking.find({ userId: userId });
+    console.log("Bookings found:", bookings); // Log para verificar las reservas encontradas
+
+    res.send(bookings); // Enviar las reservas encontradas
+  } catch (error) {
+    return res.status(400).json({ error }); // Enviar error si ocurre un problema
+  }
+});
+
 module.exports = router;
