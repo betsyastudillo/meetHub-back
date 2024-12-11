@@ -1,5 +1,21 @@
 [
   {
+    "name": "Sala 1",
+    "capacity": 120,
+    "status": "Activa",
+    "location": "Departamento principal piso 4",
+    "currentBookings": [],
+    "imgUrl": ["https://i.pinimg.com/236x/65/4d/23/654d230a68408028e43b792bdf48fb85.jpg"]
+  },
+  {
+    "name": "Sala 2",
+    "capacity": 135,
+    "status": "Activa",
+    "location": "Departamento principal piso 1",
+    "currentBookings": [],
+    "imgUrl": ["https://i.pinimg.com/474x/82/c5/90/82c5905ee29ac314e64c098e2f401846.jpg"]
+  },
+  {
     "name": "Sala 3",
     "capacity": 20,
     "status": "Activa",
