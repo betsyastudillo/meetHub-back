@@ -32,6 +32,25 @@ router.post("/addroom", async (req, res) => {
   }
 });
 
+//Actualizar sala
+router.put('/updateRoom/:id', async (req, res) => {
+  const { id } = req.params;
+  const roomUpdate = await Room.findOneAndUpdate(
+    { _id: id },
+    { $set: req.body },
+    { new: true }
+  )
+  if (!roomUpdate) return res.status(404).send("No se encontró la sala");
+  const roomUpdated = await roomUpdate.save();
+  res.send(roomUpdated);
+});
+//Eliminar sala
+router.delete('/deleteRoom/:id', async (req, res) => {
+  const { id } = req.params;
+  const roomdelete = await Room.findOneAndDelete({_id: id})
+  if (!roomdelete) return res.status(404).send("No se encontró la sala");
+  res.send('Sala eliminada exitosamente');
+})
 //Obtener las salas más reservadas
 router.get("/getTopRooms", async (req, res) => {
   try {
