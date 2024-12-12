@@ -41,12 +41,13 @@ router.post("/bookroom", async (req, res) => {
     // Mirar como controlar si sale un error -> Es una "solución superficial" lo de abajo \/ 
     if (info) {
       await roomtemp.save();
-      res
+      return res
         .status(200)
         .send({ message: "Sala reservada exitosamente. Email enviado." });
     } else {
-      console.error("Error sending email:", info.error); // Log the error for debugging
-      res.status(500).send({
+      console.error("Error sending email:", info.error);
+      await roomtemp.save();
+      return res.status(500).send({
         message: "Error al enviar el email. La sala se reservó con éxito.",
       });
     }

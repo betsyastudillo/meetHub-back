@@ -1,7 +1,10 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 const User = require("../models/user");
+
+const verifyToken = require("../utils/verifyToken");
 
 router.post("/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -21,6 +24,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
+  console.log(process.env.JWT_KEY);
 
   try {
     const user = await User.findOne({
@@ -30,13 +34,31 @@ router.post("/login", async (req, res) => {
     if (user) {
       bcrypt.compare(password, user.password, (err, response) => {
         if (response) {
-          const temp = {
-            name: user.name,
-            email: user.email,
-            isAdmin: user.isAdmin,
-            _id: user._id,
-          };
-          res.send(temp);
+          const token = jwt.sign(
+            {
+              name: user.name,
+              email: user.email,
+              isAdmin: user.isAdmin,
+              _id: user._id,
+            },
+            process.env.JWT_KEY,
+            { expiresIn: "1d" }
+          );
+          res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+          });
+          res.send({
+            message: "Success!",
+            user: {
+              name: user.name,
+              email: user.email,
+              isAdmin: user.isAdmin,
+              _id: user._id,
+            },
+          });
+        } else {
+          res.status(404).json("La contraseña es incorrecta", err);
         }
       });
     } else {
@@ -54,6 +76,16 @@ router.get("/getAllusers", async (req, res) => {
   } catch (error) {
     return res.status(400).json({ error });
   }
+});
+
+router.get("/home", verifyToken, (req, res) => {
+  const profile = {
+    _id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+    isAdmin: req.user.isAdmin
+  };
+  res.json({ message: "Success!", profile });
 });
 
 module.exports = router;
