@@ -77,7 +77,7 @@ router.post("/cancelBooking", async (req, res) => {
   const { bookingId, roomId } = req.body;
   try {
     const bookingItem = await Booking.findOne({ _id: bookingId });
-    bookingItem.status = "cancelled";
+    bookingItem.status = "Cancelada";
 
     await bookingItem.save();
 
